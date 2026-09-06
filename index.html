@@ -1,296 +1,1080 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Lingua Lumi ✦</title>
+<title>Lingua Lumi ✦</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+:root{
+  --bg:#f8f1e8;
+  --paper:#fffaf4;
+  --text:#403934;
+  --muted:#8c8179;
+  --rose:#dca8aa;
+  --mauve:#b99bb2;
+  --sage:#a9b8a0;
+  --lavender:#c9bfdc;
+  --cream:#f4dfc8;
+  --shadow:0 15px 40px rgba(91,72,64,.12);
+  --radius:28px;
+}
 
-  <link rel="stylesheet" href="style.css">
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"DM Sans",sans-serif;
+  transition:.3s;
+}
+
+button,input{font:inherit}
+
+button{cursor:pointer}
+
+.topbar{
+  max-width:1180px;
+  margin:auto;
+  padding:25px 25px 10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-family:"Playfair Display",serif;
+  font-size:25px;
+}
+
+.brand span{
+  color:#b890a5;
+  margin-right:7px;
+}
+
+.round-button{
+  width:44px;
+  height:44px;
+  border:0;
+  border-radius:50%;
+  background:var(--paper);
+  color:var(--text);
+  box-shadow:var(--shadow);
+  font-size:20px;
+  transition:.2s;
+}
+
+.round-button:active,
+.language-button:active,
+.story-card:active,
+.action-button:active{
+  transform:scale(.96);
+}
+
+.hero{
+  text-align:center;
+  max-width:800px;
+  margin:45px auto 35px;
+  padding:20px;
+  position:relative;
+}
+
+.hero-flower{
+  font-size:32px;
+  opacity:.55;
+  margin-bottom:12px;
+}
+
+.eyebrow,
+.section-label,
+.mini-label{
+  letter-spacing:2px;
+  font-size:11px;
+  font-weight:600;
+  color:var(--muted);
+}
+
+.hero h1{
+  font-family:"Playfair Display",serif;
+  font-size:58px;
+  line-height:1.05;
+  margin:15px 0;
+}
+
+.hero h1 em{
+  color:#a8879c;
+  font-weight:500;
+}
+
+.hero-description{
+  max-width:560px;
+  margin:auto;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.search-area,
+.language-area,
+.stories-area{
+  max-width:1100px;
+  margin:auto;
+  padding:0 25px;
+}
+
+.search-box{
+  max-width:600px;
+  margin:0 auto 35px;
+  background:var(--paper);
+  border-radius:50px;
+  padding:14px 22px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  box-shadow:var(--shadow);
+}
+
+.search-box span{
+  font-size:25px;
+  color:var(--muted);
+}
+
+.search-box input{
+  border:0;
+  outline:0;
+  background:transparent;
+  width:100%;
+  color:var(--text);
+}
+
+.language-area{
+  text-align:center;
+  margin-bottom:45px;
+}
+
+.language-buttons{
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.language-button{
+  border:1px solid #e3d7ce;
+  background:rgba(255,250,244,.7);
+  color:var(--text);
+  padding:9px 15px;
+  border-radius:30px;
+  transition:.2s;
+}
+
+.language-button.active{
+  background:#9f8197;
+  color:white;
+  border-color:#9f8197;
+}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:22px;
+}
+
+.section-heading h2{
+  font-family:"Playfair Display",serif;
+  font-size:30px;
+  margin:6px 0 0;
+}
+
+.section-heading>span{
+  font-size:25px;
+  color:#b58da4;
+}
+
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  padding-bottom:70px;
+}
+
+.story-card{
+  background:var(--paper);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.25s;
+  cursor:pointer;
+}
+
+.story-card:hover{
+  transform:translateY(-5px);
+}
+
+.story-art{
+  height:205px;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.story-art::before,
+.story-art::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.25);
+}
+
+.story-art::before{
+  width:150px;
+  height:150px;
+  top:-50px;
+  right:-25px;
+}
+
+.story-art::after{
+  width:100px;
+  height:100px;
+  bottom:-35px;
+  left:-20px;
+}
+
+.art-1{background:#e7c4bd}
+.art-2{background:#d9c7a9}
+.art-3{background:#c7b8d0}
+.art-4{background:#b8c7b0}
+.art-5{background:#b8afca}
+.art-6{background:#e1c4a8}
+
+.story-icon{
+  font-size:72px;
+  position:relative;
+  z-index:2;
+  filter:drop-shadow(0 8px 8px rgba(80,60,50,.12));
+}
+
+.story-content{
+  padding:22px;
+}
+
+.story-number{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+.story-content h3{
+  font-family:"Playfair Display",serif;
+  font-size:24px;
+  margin:8px 0;
+}
+
+.story-content p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  margin:0;
+}
+
+.read-more{
+  display:block;
+  margin-top:18px;
+  color:#9a7890;
+  font-weight:600;
+  font-size:13px;
+}
+
+.hidden{display:none!important}
+
+/* READER */
+
+.reader-page{
+  min-height:100vh;
+  padding:25px;
+  max-width:900px;
+  margin:auto;
+}
+
+.back-button{
+  border:0;
+  background:var(--paper);
+  color:var(--text);
+  padding:11px 18px;
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  margin-bottom:25px;
+}
+
+.reader-artwork{
+  height:330px;
+  border-radius:32px;
+  background:#e7c4bd;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.reader-icon{
+  font-size:110px;
+  filter:drop-shadow(0 12px 10px rgba(60,40,30,.15));
+}
+
+.artwork-star{
+  position:absolute;
+  top:35px;
+  right:45px;
+  font-size:30px;
+  color:white;
+  opacity:.7;
+}
+
+.reader-card{
+  background:var(--paper);
+  margin:-50px 30px 50px;
+  position:relative;
+  border-radius:32px;
+  padding:40px;
+  box-shadow:var(--shadow);
+}
+
+.reader-number{
+  letter-spacing:2px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.reader-card h1{
+  font-family:"Playfair Display",serif;
+  font-size:42px;
+  margin:8px 0;
+}
+
+.reader-language{
+  color:#a17d94;
+  font-weight:600;
+}
+
+.story-text{
+  margin-top:30px;
+  font-family:"Playfair Display",serif;
+  font-size:20px;
+  line-height:2;
+  white-space:pre-line;
+}
+
+.reader-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:30px 0;
+}
+
+.action-button{
+  border:0;
+  border-radius:30px;
+  padding:12px 18px;
+  background:#eee3dc;
+  color:var(--text);
+  transition:.2s;
+}
+
+.action-button.primary{
+  background:#9d8197;
+  color:white;
+}
+
+.translation-section{
+  border-top:1px solid #e8ddd5;
+  padding-top:25px;
+  margin-bottom:30px;
+}
+
+.translation-text{
+  line-height:1.8;
+  color:var(--muted);
+}
+
+.vocabulary-section{
+  border-top:1px solid #e8ddd5;
+  padding-top:25px;
+}
+
+.vocabulary-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.vocabulary-heading h2{
+  font-family:"Playfair Display",serif;
+  margin:5px 0;
+}
+
+.vocabulary-heading>span{
+  font-size:28px;
+  color:#b98d9c;
+}
+
+.vocabulary-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+
+.vocab-item{
+  background:#f5ece5;
+  border-radius:18px;
+  padding:15px;
+}
+
+.vocab-word{
+  font-weight:600;
+}
+
+.vocab-meaning{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
+}
+
+/* DARK */
+
+body.dark{
+  --bg:#242126;
+  --paper:#302c32;
+  --text:#f2e9e3;
+  --muted:#b9adb5;
+  --shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+body.dark .language-button{
+  background:#302c32;
+  color:#eee;
+  border-color:#4b444c;
+}
+
+body.dark .language-button.active{
+  background:#9d8197;
+  color:white;
+}
+
+body.dark .search-box,
+body.dark .round-button,
+body.dark .back-button{
+  background:#302c32;
+}
+
+body.dark .action-button{
+  background:#453e45;
+  color:#eee;
+}
+
+body.dark .vocab-item{
+  background:#3b353b;
+}
+
+body.dark .translation-section,
+body.dark .vocabulary-section{
+  border-color:#494149;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+  .hero h1{font-size:45px}
+
+  .story-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:560px){
+  .topbar{
+    padding:18px 17px 5px;
+  }
+
+  .hero{
+    margin-top:25px;
+  }
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .search-area,
+  .language-area,
+  .stories-area{
+    padding-left:17px;
+    padding-right:17px;
+  }
+
+  .story-grid{
+    grid-template-columns:1fr;
+  }
+
+  .story-art{
+    height:190px;
+  }
+
+  .reader-page{
+    padding:17px;
+  }
+
+  .reader-artwork{
+    height:250px;
+  }
+
+  .reader-card{
+    margin:-35px 8px 30px;
+    padding:25px 20px;
+  }
+
+  .reader-card h1{
+    font-size:34px;
+  }
+
+  .story-text{
+    font-size:18px;
+  }
+
+  .vocabulary-list{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ================= HOME ================= -->
+<div id="homePage">
 
-  <div id="homePage">
+<header class="topbar">
+  <div class="brand">
+    <span>✦</span> Lingua Lumi
+  </div>
 
-    <header class="topbar">
+  <button class="round-button" id="darkButton">☾</button>
+</header>
 
-      <div class="brand">
-        <span>✦</span>
-        <strong>Lingua Lumi</strong>
-      </div>
+<section class="hero">
+  <div class="hero-flower">✿</div>
 
-      <button
-        id="darkModeButton"
-        class="round-button"
-        aria-label="Dark mode"
-      >
-        ☾
-      </button>
+  <p class="eyebrow">
+    STORIES THAT TEACH · LANGUAGES THAT STAY
+  </p>
 
-    </header>
+  <h1>
+    Little stories,<br>
+    <em>new languages.</em>
+  </h1>
 
+  <p class="hero-description">
+    Read beautiful little stories and learn languages naturally through context.
+  </p>
+</section>
 
-    <section class="hero">
+<section class="search-area">
+  <div class="search-box">
+    <span>⌕</span>
+    <input id="searchInput" placeholder="Search stories...">
+  </div>
+</section>
 
-      <div class="hero-flower">✿</div>
+<section class="language-area">
+  <p class="section-label">CHOOSE A LANGUAGE</p>
 
-      <p class="eyebrow">
-        STORIES THAT TEACH · LANGUAGES THAT STAY
-      </p>
+  <div class="language-buttons">
 
-      <h1>
-        Little stories,<br>
-        <em>new languages.</em>
-      </h1>
+    <button class="language-button active" data-lang="en">
+      English
+    </button>
 
-      <p class="hero-description">
-        Read beautiful little stories and learn languages
-        naturally through context.
-      </p>
+    <button class="language-button" data-lang="hi">
+      हिन्दी
+    </button>
 
-    </section>
+    <button class="language-button" data-lang="ja">
+      日本語
+    </button>
 
+    <button class="language-button" data-lang="ko">
+      한국어
+    </button>
 
-    <!-- SEARCH -->
+    <button class="language-button" data-lang="es">
+      Español
+    </button>
 
-    <section class="search-area">
+    <button class="language-button" data-lang="fr">
+      Français
+    </button>
 
-      <div class="search-box">
+    <button class="language-button" data-lang="de">
+      Deutsch
+    </button>
 
-        <span>⌕</span>
+    <button class="language-button" data-lang="it">
+      Italiano
+    </button>
 
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search stories..."
-        >
+    <button class="language-button" data-lang="ar">
+      العربية
+    </button>
 
-      </div>
+  </div>
+</section>
 
-    </section>
+<section class="stories-area">
 
+  <div class="section-heading">
+    <div>
+      <p class="section-label">YOUR LITTLE LIBRARY</p>
+      <h2>Stories to wander through</h2>
+    </div>
 
-    <!-- LANGUAGE BUTTONS -->
+    <span>✦</span>
+  </div>
 
-    <section class="language-area">
+  <div class="story-grid" id="storyGrid"></div>
 
-      <p class="section-label">
-        CHOOSE A LANGUAGE
-      </p>
+</section>
 
-      <div class="language-buttons">
-
-        <button class="language-button active" data-language="en">
-          English
-        </button>
-
-        <button class="language-button" data-language="hi">
-          हिन्दी
-        </button>
-
-        <button class="language-button" data-language="ja">
-          日本語
-        </button>
-
-        <button class="language-button" data-language="ko">
-          한국어
-        </button>
-
-        <button class="language-button" data-language="es">
-          Español
-        </button>
-
-        <button class="language-button" data-language="fr">
-          Français
-        </button>
-
-        <button class="language-button" data-language="de">
-          Deutsch
-        </button>
-
-        <button class="language-button" data-language="it">
-          Italiano
-        </button>
-
-        <button class="language-button" data-language="ar">
-          العربية
-        </button>
-
-      </div>
-
-    </section>
+</div>
 
 
-    <!-- STORIES -->
+<!-- READER -->
 
-    <section class="stories-area">
+<div id="readerPage" class="reader-page hidden">
 
-      <div class="section-heading">
+  <button class="back-button" id="backButton">
+    ← Back
+  </button>
 
-        <div>
-          <p class="section-label">YOUR LITTLE LIBRARY</p>
-          <h2>Stories to wander through</h2>
-        </div>
+  <div class="reader-artwork" id="readerArtwork">
 
-        <span>✦</span>
+    <div class="reader-icon" id="readerIcon">
+      ☂️
+    </div>
 
-      </div>
-
-      <div
-        id="storyGrid"
-        class="story-grid"
-      ></div>
-
-    </section>
+    <span class="artwork-star">✦</span>
 
   </div>
 
+  <article class="reader-card">
 
-  <!-- ================= READER ================= -->
+    <p class="reader-number" id="readerNumber">
+      STORY 01
+    </p>
 
-  <div
-    id="readerPage"
-    class="reader-page hidden"
-  >
+    <h1 id="readerTitle">
+      The Little Umbrella
+    </h1>
 
-    <button
-      id="backButton"
-      class="back-button"
-    >
-      ← Back
-    </button>
+    <p class="reader-language" id="readerLanguage">
+      🌍 English
+    </p>
 
+    <div class="story-text" id="storyText"></div>
 
-    <div
-      id="readerArtwork"
-      class="reader-artwork"
-    >
+    <div class="reader-actions">
 
-      <div
-        id="readerIcon"
-        class="reader-icon"
-      >
-        ☂️
-      </div>
+      <button class="action-button primary" id="readButton">
+        🔊 Read aloud
+      </button>
 
-      <span class="artwork-star">✦</span>
+      <button class="action-button" id="translationButton">
+        ✨ English translation
+      </button>
 
     </div>
 
+    <section class="translation-section hidden" id="translationSection">
 
-    <article class="reader-card">
-
-      <p
-        id="readerNumber"
-        class="reader-number"
-      >
-        STORY 01
+      <p class="mini-label">
+        ENGLISH TRANSLATION
       </p>
 
-      <h1 id="readerTitle">
-        The Little Umbrella
-      </h1>
+      <p class="translation-text" id="translationText"></p>
 
-      <p
-        id="readerLanguage"
-        class="reader-language"
-      >
-        🌍 English
-      </p>
+    </section>
 
+    <section class="vocabulary-section">
 
-      <!-- STORY -->
+      <div class="vocabulary-heading">
 
-      <div
-        id="storyText"
-        class="story-text"
-      ></div>
+        <div>
+          <p class="mini-label">
+            WORDS TO KEEP
+          </p>
 
+          <h2>✦ Vocabulary</h2>
+        </div>
 
-      <!-- BUTTONS -->
-
-      <div class="reader-actions">
-
-        <button
-          id="readButton"
-          class="action-button primary"
-        >
-          🔊 Read aloud
-        </button>
-
-        <button
-          id="translationButton"
-          class="action-button"
-        >
-          ✨ English translation
-        </button>
+        <span>♡</span>
 
       </div>
 
+      <div class="vocabulary-list" id="vocabularyList"></div>
 
-      <!-- TRANSLATION -->
+    </section>
 
-      <section
-        id="translationSection"
-        class="translation-section hidden"
-      >
+  </article>
 
-        <p class="mini-label">
-          ENGLISH TRANSLATION
-        </p>
-
-        <p
-          id="translationText"
-          class="translation-text"
-        ></p>
-
-      </section>
+</div>
 
 
-      <!-- VOCABULARY -->
+<script>
 
-      <section class="vocabulary-section">
+const languages = {
 
-        <div class="vocabulary-heading">
+  en:{name:"English",flag:"🌍",voice:"en-US"},
 
-          <div>
-            <p class="mini-label">
-              WORDS TO KEEP
-            </p>
+  hi:{name:"हिन्दी",flag:"🇮🇳",voice:"hi-IN"},
 
-            <h2>
-              ✦ Vocabulary
-            </h2>
-          </div>
+  ja:{name:"日本語",flag:"🇯🇵",voice:"ja-JP"},
 
-          <span>♡</span>
+  ko:{name:"한국어",flag:"🇰🇷",voice:"ko-KR"},
 
-        </div>
+  es:{name:"Español",flag:"🇪🇸",voice:"es-ES"},
 
-        <div
-          id="vocabularyList"
-          class="vocabulary-list"
-        ></div>
+  fr:{name:"Français",flag:"🇫🇷",voice:"fr-FR"},
 
-      </section>
+  de:{name:"Deutsch",flag:"🇩🇪",voice:"de-DE"},
 
-    </article>
+  it:{name:"Italiano",flag:"🇮🇹",voice:"it-IT"},
 
-  </div>
+  ar:{name:"العربية",flag:"🇸🇦",voice:"ar-SA"}
+
+};
 
 
-  <script src="script.js"></script>
+const stories = [
 
-</body>
-</html>
+{
+
+title:"The Little Umbrella",
+
+icon:"☂️",
+
+art:"art-1",
+
+descriptions:{
+
+en:"A tiny umbrella discovers that small things can make a rainy day beautiful.",
+
+hi:"एक छोटी छतरी सीखती है कि छोटी चीज़ें बारिश के दिन को खूबसूरत बना सकती हैं।",
+
+ja:"小さな傘は、小さなものが雨の日を美しくできることを知ります。",
+
+ko:"작은 우산은 작은 것들이 비 오는 날을 아름답게 만들 수 있다는 것을 배웁니다.",
+
+es:"Un pequeño paraguas descubre que las cosas pequeñas pueden hacer hermoso un día lluvioso.",
+
+fr:"Un petit parapluie découvre que les petites choses peuvent rendre une journée pluvieuse magnifique.",
+
+de:"Ein kleiner Regenschirm entdeckt, dass kleine Dinge einen Regentag schön machen können.",
+
+it:"Un piccolo ombrello scopre che le piccole cose possono rendere bello un giorno di pioggia.",
+
+ar:"تكتشف مظلة صغيرة أن الأشياء الصغيرة يمكن أن تجعل اليوم الممطر جميلاً."
+
+},
+
+texts:{
+
+en:`Mia found a little umbrella beside the old garden gate.
+
+It was small, yellow, and covered with tiny blue flowers.
+
+She opened it when the rain began.
+
+As she walked home, she noticed puddles shining like little mirrors.
+
+The rain no longer felt gloomy.
+
+Sometimes, Mia thought, a small umbrella is enough to change the whole day.`,
+
+hi:`मिया को पुराने बगीचे के दरवाज़े के पास एक छोटी छतरी मिली।
+
+वह छोटी, पीली और छोटे नीले फूलों से ढकी हुई थी।
+
+जब बारिश शुरू हुई तो उसने उसे खोल लिया।
+
+घर जाते समय उसने देखा कि पानी के छोटे गड्ढे शीशों की तरह चमक रहे थे।
+
+अब बारिश उदास नहीं लग रही थी।
+
+कभी-कभी, मिया ने सोचा, एक छोटी छतरी पूरे दिन को बदलने के लिए काफी होती है।`,
+
+ja:`ミアは古い庭の門のそばで、小さな傘を見つけました。
+
+それは黄色くて、小さな青い花で飾られていました。
+
+雨が降り始めると、ミアは傘を開きました。
+
+家へ歩いていると、水たまりが小さな鏡のように輝いていることに気づきました。
+
+もう雨は憂うつに感じませんでした。
+
+時には、小さな傘ひとつで一日を変えられるのだとミアは思いました。`,
+
+ko:`미아는 오래된 정원 문 옆에서 작은 우산을 발견했습니다.
+
+그 우산은 노란색이었고 작은 파란 꽃들로 장식되어 있었습니다.
+
+비가 내리기 시작하자 미아는 우산을 펼쳤습니다.
+
+집으로 걸어가면서 그녀는 작은 물웅덩이가 작은 거울처럼 빛나는 것을 보았습니다.
+
+더 이상 비가 우울하게 느껴지지 않았습니다.
+
+때로는 작은 우산 하나만으로도 하루 전체가 달라질 수 있다고 미아는 생각했습니다.`,
+
+es:`Mia encontró un pequeño paraguas junto a la vieja puerta del jardín.
+
+Era amarillo y estaba cubierto de pequeñas flores azules.
+
+Lo abrió cuando comenzó a llover.
+
+Mientras caminaba a casa, notó que los charcos brillaban como pequeños espejos.
+
+La lluvia ya no parecía triste.
+
+A veces, pensó Mia, un pequeño paraguas es suficiente para cambiar todo el día.`,
+
+fr:`Mia trouva un petit parapluie près de la vieille porte du jardin.
+
+Il était jaune et couvert de petites fleurs bleues.
+
+Elle l'ouvrit lorsque la pluie commença.
+
+En rentrant chez elle, elle remarqua que les flaques brillaient comme de petits miroirs.
+
+La pluie ne semblait plus triste.
+
+Parfois, pensa Mia, un petit parapluie suffit pour changer toute une journée.`,
+
+de:`Mia fand einen kleinen Regenschirm neben dem alten Gartentor.
+
+Er war gelb und mit kleinen blauen Blumen bedeckt.
+
+Sie öffnete ihn, als der Regen begann.
+
+Auf dem Weg nach Hause bemerkte sie, dass die Pfützen wie kleine Spiegel glänzten.
+
+Der Regen fühlte sich nicht mehr traurig an.
+
+Manchmal, dachte Mia, reicht ein kleiner Regenschirm aus, um den ganzen Tag zu verändern.`,
+
+it:`Mia trovò un piccolo ombrello accanto al vecchio cancello del giardino.
+
+Era giallo e coperto di piccoli fiori blu.
+
+Lo aprì quando iniziò a piovere.
+
+Mentre tornava a casa, notò che le pozzanghere brillavano come piccoli specchi.
+
+La pioggia non sembrava più triste.
+
+A volte, pensò Mia, basta un piccolo ombrello per cambiare tutta la giornata.`,
+
+ar:`وجدت ميا مظلة صغيرة بجانب بوابة الحديقة القديمة.
+
+كانت صفراء ومغطاة بزهور زرقاء صغيرة.
+
+فتحتها عندما بدأ المطر.
+
+وأثناء عودتها إلى المنزل، لاحظت أن البرك تلمع مثل المرايا الصغيرة.
+
+لم يعد المطر يبدو كئيباً.
+
+أحياناً، فكرت ميا، تكفي مظلة صغيرة لتغيير اليوم كله.`
+
+},
+
+vocab:{
+
+en:[["umbrella","something used to protect you from rain"],["puddle","a small pool of water"],["gloomy","sad or without brightness"]],
+
+hi:[["छतरी","बारिश से बचाने वाली वस्तु"],["गड्ढा","जमीन पर जमा हुआ पानी"],["उदास","खुशी के बिना"]],
+
+ja:[["傘","雨から身を守るもの"],["水たまり","地面に जमा हुआ पानी"],["憂うつ","気分が暗いこと"]],
+
+ko:[["우산","비를 막아 주는 물건"],["물웅덩이","땅에 고인 작은 물"],["우울하다","기분이 어둡고 슬프다"]],
+
+es:[["paraguas","objeto para protegerse de la lluvia"],["charco","pequeña acumulación de agua"],["triste","sin alegría"]],
+
+fr:[["parapluie","objet pour se protéger de la pluie"],["flaque","petite quantité d'eau au sol"],["triste","sans joie"]],
+
+de:[["Regenschirm","etwas, das vor Regen schützt"],["Pfütze","kleine Ansammlung von Wasser"],["traurig","nicht fröhlich"]],
+
+it:[["ombrello","oggetto per proteggersi dalla pioggia"],["pozzanghera","piccola raccolta d'acqua"],["triste","senza allegria"]],
+
+ar:[["مظلة","شيء يحمي من المطر"],["بركة","كمية صغيرة من الماء على الأرض"],["كئيب","حزين أو بلا إشراق"]]
+
+}
+
+},
+
+{
+
+title:"A Cup of Morning",
+
+icon:"☕",
+
+art:"art-2",
+
+descriptions:{
+
+en:"A quiet morning, a warm cup, and a reminder to slow down.",
+
+hi:"एक शांत सुबह, एक गर्म कप और धीरे चलने की याद।",
+
+ja:"静かな朝と温かいカップが、ゆっくりすることを思い出させます。",
+
+ko:"조용한 아침과 따뜻한 한 잔이 천천히 살아가는 것을 알려줍니다.",
+
+es:"Una mañana tranquila y una taza caliente que recuerda la importancia de ir despacio.",
+
+fr:"Un matin calme et une tasse chaude qui rappellent de prendre son temps.",
+
+de:"Ein ruhiger Morgen und eine warme Tasse erinnern daran, langsamer zu werden.",
+
+it:"Una mattina tranquilla e una tazza calda ricordano di rallentare.",
+
+ar:"صباح هادئ وكوب دافئ يذكراننا بأن نتمهل."
+
+},
+
+texts:{
+
+en:`Every morning, Noor made one cup of tea.
+
+She never drank it while rushing.
+
+Instead, she sat beside the window and watched the light move across the room.
+
+One morning she realized something simple.
+
+The day did not need to be hurried.
+
+There was beauty in taking one quiet moment before everything began.`,
+
+hi:`हर सुबह नूर एक कप चाय बनाती थी।
+
+वह उसे कभी जल्दी में नहीं पीती थी।
+
+इसके बजाय, वह खिड़की के पास बैठती और कमरे में रोशनी को धीरे-धीरे फैलते देखती।
+
+एक सुबह उसे एक सरल बात समझ आई।
+
+दिन को जल्दी में जीने की जरूरत नहीं थी।
+
+हर चीज़ शुरू होने से पहले एक शांत पल में भी खूबसूरती होती है।`,
+
+ja:`毎朝、ヌールは一杯のお茶を作りました。
+
+彼女は急いで飲むことはありませんでした。
+
+窓のそばに座り、部屋の中を光がゆっくり動くのを眺めました。
+
+ある朝、彼女は簡単なことに気づきました。
+
+一日を急ぐ必要はないのです。
+
+すべてが始まる前の静かなひとときにも、美しさがありました。`,
+
+ko:`매일 아침 누르는 차 한 잔을 만들었습니다.
+
+그녀는 절대로 서둘러 마시지 않았습니다.
+
+대신 창가에 앉아 방 안을 천천히 움직이는 빛을 바라보았습니다.
+
+어느 아침 그녀는 단순한 사실을 깨달았습니다.
+
+하루를 서두를 필요는 없었습니다.
+
+모든 것이 시작되기 전 조용한 순간에도 아름다움이 있었습니다.`,
+
+es:`Cada mañana, Noor preparaba una taza de té.
+
+Nunca la bebía con prisa.
+
+Se sentaba junto a la ventana y observaba cómo la luz recorría lentamente la habitación.
+
+Una mañana comprendió algo sencillo.
+
+No era necesario apresurar el día.
+
+Había belleza en disfrutar de un momento tranquilo antes de que todo comenzara.`,
+
+fr:`Chaque matin, Noor préparait une tasse de thé.
+
+Elle ne la buvait jamais dans la précipitation.
+
+Elle s'asseyait près de la fenêtre et regardait la lumière traverser doucement la pièce.
+
+Un matin, elle comprit quelque chose de simple.
+
+Il n'était pas nécessaire de se dépêcher.
+
+Il y avait de la beauté dans un moment calme avant que tout commence.`,
+
+de:`Jeden Morgen machte Noor eine Tasse Tee.
+
+Sie trank sie nie in Eile.
+
+Stattdessen saß sie am Fenster und beobachtete, wie das Licht langsam durch den Raum wanderte.
+
+Eines Morgens erkannte sie etwas Einfaches.
+
+Der Tag musste nicht gehetzt werden.
+
+Es lag Schönheit darin, einen ruhigen Moment zu genießen, bevor alles begann.`,
+
+it:`Ogni mattina Noor preparava una tazza di tè.
+
+Non la beveva mai di fretta.
+
+Si sedeva invece vicino alla finestra e guardava la luce muoversi lentamente nella stanza.
+
+Una mattina capì una cosa semplice.
+
+Non era necessario affrettare la giornata.
+
+C'era bellezza in un momento tranquillo prima che tutto iniziasse.`,
+
+ar:`كل صباح، كانت نور تحضر كوباً من الشاي.
+
+لم تكن تشربه أبداً على عجل.
+
+كانت تجلس بجانب النافذة وتشاهد الضوء يتحرك ببطء في الغرفة.
+
+في صباح ما، أدركت شيئاً بسيطاً.
+
+لم يكن من الضروري أن نستعجل اليوم.
+
+كان هناك جمال في أخذ لحظة هادئة قبل أن يبدأ كل شيء.`
+
+},
+
+vocab:{
+
+en:[["morning","the early part of the day"],["quiet","without much noise"],["hurry","to move or act quickly"]],
+
+hi:[["सुबह","दिन का शुरुआती समय"],["शांत","बिना ज्यादा शोर के"],["जल्दी","तेज़ी से काम करना"]],
+
+ja:[["朝","一日の始まりの時間"],["静か","音が少ないこと"],["急ぐ","速く行動すること"]],
+
+ko:[["
