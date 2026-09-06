@@ -506,18 +506,18 @@ Read story →
 
 let currentLanguage = "en";
 
-
-function openStory(title, language, vocab) {
+function openStory(title, language, story, vocab) {
 
 document.getElementById("modalTitle").innerText = title;
 
 document.getElementById("modalLanguage").innerText =
-"📖 English";
+"📖 " + language;
 
 document.getElementById("modalText").innerText =
-"Tap outside this window to close the story.";
+story;
 
-document.getElementById("modalVocab").innerHTML = vocab;
+document.getElementById("modalVocab").innerHTML =
+vocab;
 
 document.getElementById("modal").style.display = "block";
 
@@ -529,7 +529,8 @@ function closeStory() {
 document.getElementById("modal").style.display = "none";
 
 }
-
+document.getElementById("modalText").innerText =
+"The full story will appear here.";
 
 document.getElementById("modal").onclick = function(event) {
 
