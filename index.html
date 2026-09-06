@@ -6,58 +6,57 @@
 
   <title>Lingua Lumi ✦</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HOME -->
+  <!-- ================= HOME ================= -->
 
-  <main id="home">
+  <div id="homePage">
 
-    <header>
-      <nav class="nav">
+    <header class="topbar">
 
-        <div class="logo">
-          <span class="logo-star">✦</span>
-          Lingua Lumi
-        </div>
+      <div class="brand">
+        <span>✦</span>
+        <strong>Lingua Lumi</strong>
+      </div>
 
-        <div class="header-actions">
-          <button
-            id="themeBtn"
-            class="icon-btn"
-            aria-label="Toggle dark mode"
-          >
-            ☾
-          </button>
-        </div>
+      <button
+        id="darkModeButton"
+        class="round-button"
+        aria-label="Dark mode"
+      >
+        ☾
+      </button>
 
-      </nav>
     </header>
 
 
-    <!-- HERO -->
-
     <section class="hero">
 
-      <div class="hero-decoration">
-        ✿
-      </div>
+      <div class="hero-flower">✿</div>
 
-      <div class="hero-small">
+      <p class="eyebrow">
         STORIES THAT TEACH · LANGUAGES THAT STAY
-      </div>
+      </p>
 
       <h1>
-        Little stories,
-        <span>new languages.</span>
-        ✦
+        Little stories,<br>
+        <em>new languages.</em>
       </h1>
 
-      <p>
-        Read beautiful little stories and discover new languages
-        naturally through context, translation and vocabulary.
+      <p class="hero-description">
+        Read beautiful little stories and learn languages
+        naturally through context.
       </p>
 
     </section>
@@ -65,17 +64,16 @@
 
     <!-- SEARCH -->
 
-    <section class="search-wrap">
+    <section class="search-area">
 
-      <div class="search">
+      <div class="search-box">
 
-        <span>🔎</span>
+        <span>⌕</span>
 
         <input
           id="searchInput"
-          type="search"
+          type="text"
           placeholder="Search stories..."
-          autocomplete="off"
         >
 
       </div>
@@ -83,49 +81,49 @@
     </section>
 
 
-    <!-- LANGUAGES -->
+    <!-- LANGUAGE BUTTONS -->
 
-    <section class="language-section">
+    <section class="language-area">
 
-      <div class="language-title">
-        Choose your language
-      </div>
+      <p class="section-label">
+        CHOOSE A LANGUAGE
+      </p>
 
-      <div class="languages">
+      <div class="language-buttons">
 
-        <button class="lang-btn active" data-lang="en">
+        <button class="language-button active" data-language="en">
           English
         </button>
 
-        <button class="lang-btn" data-lang="hi">
+        <button class="language-button" data-language="hi">
           हिन्दी
         </button>
 
-        <button class="lang-btn" data-lang="ja">
+        <button class="language-button" data-language="ja">
           日本語
         </button>
 
-        <button class="lang-btn" data-lang="ko">
+        <button class="language-button" data-language="ko">
           한국어
         </button>
 
-        <button class="lang-btn" data-lang="es">
+        <button class="language-button" data-language="es">
           Español
         </button>
 
-        <button class="lang-btn" data-lang="fr">
+        <button class="language-button" data-language="fr">
           Français
         </button>
 
-        <button class="lang-btn" data-lang="de">
+        <button class="language-button" data-language="de">
           Deutsch
         </button>
 
-        <button class="lang-btn" data-lang="it">
+        <button class="language-button" data-language="it">
           Italiano
         </button>
 
-        <button class="lang-btn" data-lang="ar">
+        <button class="language-button" data-language="ar">
           العربية
         </button>
 
@@ -136,17 +134,16 @@
 
     <!-- STORIES -->
 
-    <section class="stories-section">
+    <section class="stories-area">
 
       <div class="section-heading">
 
         <div>
-          <h2>Little stories</h2>
+          <p class="section-label">YOUR LITTLE LIBRARY</p>
+          <h2>Stories to wander through</h2>
         </div>
 
-        <p>
-          Read · Listen · Learn
-        </p>
+        <span>✦</span>
 
       </div>
 
@@ -157,88 +154,86 @@
 
     </section>
 
-  </main>
+  </div>
 
 
-  <!-- READER -->
+  <!-- ================= READER ================= -->
 
-  <main
-    id="reader"
-    class="reader hidden"
+  <div
+    id="readerPage"
+    class="reader-page hidden"
   >
 
     <button
-      id="backBtn"
-      class="back-btn"
+      id="backButton"
+      class="back-button"
     >
-      ← Back to stories
+      ← Back
     </button>
 
 
-    <!-- STORY COVER -->
-
     <div
-      id="readerCover"
-      class="reader-cover cover-rose"
+      id="readerArtwork"
+      class="reader-artwork"
     >
 
       <div
         id="readerIcon"
-        class="cover-icon"
+        class="reader-icon"
       >
         ☂️
       </div>
 
+      <span class="artwork-star">✦</span>
+
     </div>
 
 
-    <!-- STORY CONTENT -->
+    <article class="reader-card">
 
-    <article class="reader-content">
-
-      <div
+      <p
         id="readerNumber"
-        class="reader-label"
+        class="reader-number"
       >
         STORY 01
-      </div>
+      </p>
 
       <h1 id="readerTitle">
         The Little Umbrella
       </h1>
 
-      <div
-        id="languageName"
+      <p
+        id="readerLanguage"
         class="reader-language"
       >
         🌍 English
-      </div>
+      </p>
 
 
-      <!-- ORIGINAL STORY -->
+      <!-- STORY -->
 
       <div
-        id="originalText"
+        id="storyText"
         class="story-text"
       ></div>
 
 
-      <!-- TOOLS -->
+      <!-- BUTTONS -->
 
-      <div class="reader-tools">
+      <div class="reader-actions">
 
         <button
-          id="readAloud"
-          class="tool-btn"
+          id="readButton"
+          class="action-button primary"
         >
           🔊 Read aloud
         </button>
 
         <button
-          id="translateBtn"
-          class="tool-btn"
+          id="translationButton"
+          class="action-button"
         >
-          ✨ Translation
+          ✨ English translation
         </button>
 
       </div>
@@ -247,40 +242,53 @@
       <!-- TRANSLATION -->
 
       <section
-        id="translationBox"
-        class="translation hidden"
+        id="translationSection"
+        class="translation-section hidden"
       >
 
-        <h3>
-          English translation
-        </h3>
+        <p class="mini-label">
+          ENGLISH TRANSLATION
+        </p>
 
-        <p id="translationText"></p>
+        <p
+          id="translationText"
+          class="translation-text"
+        ></p>
 
       </section>
 
 
       <!-- VOCABULARY -->
 
-      <section class="vocab">
+      <section class="vocabulary-section">
 
-        <h3>
-          ✦ Vocabulary
-        </h3>
+        <div class="vocabulary-heading">
+
+          <div>
+            <p class="mini-label">
+              WORDS TO KEEP
+            </p>
+
+            <h2>
+              ✦ Vocabulary
+            </h2>
+          </div>
+
+          <span>♡</span>
+
+        </div>
 
         <div
-          id="vocabulary"
-          class="vocab-list"
+          id="vocabularyList"
+          class="vocabulary-list"
         ></div>
 
       </section>
 
     </article>
 
-  </main>
+  </div>
 
-
-  <!-- JAVASCRIPT -->
 
   <script src="script.js"></script>
 
