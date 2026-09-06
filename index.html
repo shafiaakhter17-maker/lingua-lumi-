@@ -1,1128 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lingua Lumi ✦</title>
 
-<title>Lingua Lumi ✦</title>
-
-<style>
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: #fbf5f0;
-  color: #514540;
-  font-family: Arial, sans-serif;
-  transition: background .3s, color .3s;
-}
-
-
-/* HEADER */
-
-header {
-  text-align: center;
-  padding: 45px 20px 25px;
-}
-
-.moon {
-  font-size: 30px;
-}
-
-.logo {
-  font-family: Georgia, serif;
-  font-size: 52px;
-  margin: 8px 0;
-  color: #4f3553;
-}
-
-.tagline {
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: #b07883;
-}
-
-.subtitle {
-  max-width: 600px;
-  margin: 20px auto;
-  color: #897872;
-  line-height: 1.7;
-}
-
-
-/* CONTROLS */
-
-.controls {
-  max-width: 1000px;
-  margin: auto;
-  padding: 10px 20px;
-}
-
-.search {
-  width: 100%;
-  padding: 16px 22px;
-  border-radius: 30px;
-  border: 1px solid #eadbd5;
-  background: white;
-  font-size: 16px;
-  outline: none;
-}
-
-.languages {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 16px 0;
-}
-
-.languages button {
-  border: 1px solid #eadbd5;
-  background: white;
-  color: #594b46;
-  padding: 11px 18px;
-  border-radius: 25px;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.languages button:hover {
-  transform: translateY(-2px);
-}
-
-.languages button.active {
-  background: #d995a3;
-  color: white;
-  border-color: #d995a3;
-}
-
-.actions {
-  text-align: center;
-  margin: 5px 0 15px;
-}
-
-.actions button {
-  border: none;
-  background: white;
-  padding: 11px 18px;
-  border-radius: 22px;
-  cursor: pointer;
-}
-
-
-/* HOME */
-
-#home {
-  max-width: 1000px;
-  margin: auto;
-  padding: 10px 20px 60px;
-}
-
-
-/* STORY GRID */
-
-#storyList {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-
-
-/* STORY CARD */
-
-.story-card {
-  background: #fffaf7;
-  border: 1px solid #f0ded8;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 9px 28px rgba(80,55,45,.09);
-  cursor: pointer;
-  position: relative;
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-}
-
-.story-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 35px rgba(80,55,45,.14);
-}
-
-.story-card:active {
-  transform: scale(.96);
-  box-shadow: 0 4px 12px rgba(80,55,45,.10);
-}
-
-
-/* CARD COVER */
-
-.cover {
-  height: 190px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cover::after {
-  content: "✦";
-  position: absolute;
-  right: 16px;
-  top: 14px;
-  width: 38px;
-  height: 38px;
-  background: rgba(255,255,255,.75);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9a6470;
-  font-size: 20px;
-}
-
-.cover-icon {
-  font-size: 75px;
-  filter: drop-shadow(0 8px 8px rgba(80,50,40,.12));
-  transition: transform .3s;
-}
-
-.story-card:hover .cover-icon {
-  transform: scale(1.08) rotate(-2deg);
-}
-
-
-/* DIFFERENT COVERS */
-
-.cover1 {
-  background: linear-gradient(135deg,#f6d6c9,#f8e9cf);
-}
-
-.cover2 {
-  background: linear-gradient(135deg,#e8d7c2,#f2cdbd);
-}
-
-.cover3 {
-  background: linear-gradient(135deg,#d8e5d2,#f2e5bb);
-}
-
-.cover4 {
-  background: linear-gradient(135deg,#d8d3e9,#efd7e4);
-}
-
-.cover5 {
-  background: linear-gradient(135deg,#cbddec,#f3d7d4);
-}
-
-.cover6 {
-  background: linear-gradient(135deg,#c9d4e8,#e4d5c8);
-}
-
-
-/* CARD TEXT */
-
-.card-content {
-  padding: 20px 22px 24px;
-}
-
-.story-number {
-  color: #c77f8d;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-
-.story-card h2 {
-  font-family: Georgia, serif;
-  font-size: 28px;
-  margin: 8px 0;
-  color: #4f3b45;
-}
-
-.story-card p {
-  color: #806f68;
-  line-height: 1.65;
-  margin-bottom: 18px;
-}
-
-.card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.language-tag {
-  background: #f2d8dc;
-  color: #8c5c67;
-  padding: 7px 13px;
-  border-radius: 18px;
-  font-size: 12px;
-}
-
-.arrow {
-  font-size: 22px;
-  color: #9c6a75;
-}
-
-
-/* READER */
-
-#reader {
-  display: none;
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px 20px 70px;
-}
-
-.back-button {
-  border: none;
-  background: white;
-  color: #735e58;
-  padding: 12px 18px;
-  border-radius: 22px;
-  cursor: pointer;
-  margin-bottom: 22px;
-  font-size: 14px;
-}
-
-.reader-box {
-  background: #fffaf7;
-  border-radius: 30px;
-  overflow: hidden;
-  box-shadow: 0 10px 35px rgba(80,55,45,.10);
-}
-
-.reader-cover {
-  height: 260px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.reader-icon {
-  font-size: 105px;
-}
-
-.reader-content {
-  padding: 35px;
-}
-
-.reader-number {
-  color: #c77f8d;
-  letter-spacing: 2px;
-  font-size: 12px;
-}
-
-.reader-title {
-  font-family: Georgia, serif;
-  font-size: 45px;
-  color: #4f3553;
-  margin: 10px 0 25px;
-}
-
-.language-name {
-  color: #94716c;
-  margin-bottom: 12px;
-}
-
-
-/* ORIGINAL */
-
-.section-title {
-  font-weight: bold;
-  margin-top: 25px;
-  margin-bottom: 10px;
-}
-
-.original {
-  background: #f8e8e5;
-  border-radius: 22px;
-  padding: 24px;
-  line-height: 1.9;
-  font-size: 17px;
-  white-space: pre-line;
-}
-
-
-/* TRANSLATION */
-
-.translation {
-  background: #f0e8df;
-  border-radius: 22px;
-  padding: 24px;
-  line-height: 1.9;
-  font-size: 17px;
-  white-space: pre-line;
-}
-
-
-/* VOCAB */
-
-.vocabulary {
-  background: #e8eee4;
-  border-radius: 22px;
-  padding: 22px;
-  line-height: 1.9;
-}
-
-.word {
-  margin: 8px 0;
-}
-
-.word b {
-  color: #80604e;
-}
-
-
-/* READ BUTTON */
-
-.read-button {
-  border: none;
-  background: #9eaf9b;
-  color: white;
-  padding: 13px 20px;
-  border-radius: 22px;
-  cursor: pointer;
-  margin-top: 22px;
-  font-size: 14px;
-}
-
-.read-button:active {
-  transform: scale(.95);
-}
-
-
-/* EMPTY */
-
-.empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 50px;
-  color: #927e77;
-}
-
-
-/* DARK MODE */
-
-.dark {
-  background: #211c1c;
-  color: #f2e8e2;
-}
-
-.dark .logo {
-  color: #efdce9;
-}
-
-.dark .subtitle,
-.dark .story-card p {
-  color: #c1afa8;
-}
-
-.dark .search,
-.dark .languages button,
-.dark .actions button,
-.dark .back-button {
-  background: #332c2b;
-  color: #f4e9e2;
-  border-color: #493e3b;
-}
-
-.dark .story-card,
-.dark .reader-box {
-  background: #2d2726;
-  border-color: #453b39;
-}
-
-.dark .story-card h2,
-.dark .reader-title {
-  color: #f0dfe8;
-}
-
-.dark .original,
-.dark .translation {
-  background: #3b3130;
-}
-
-.dark .vocabulary {
-  background: #343b32;
-}
-
-
-/* MOBILE */
-
-@media(max-width:700px) {
-
-  #storyList {
-    grid-template-columns: 1fr;
-  }
-
-  .logo {
-    font-size: 42px;
-  }
-
-  .reader-title {
-    font-size: 35px;
-  }
-
-  .reader-content {
-    padding: 24px;
-  }
-
-  .reader-cover {
-    height: 210px;
-  }
-
-}
-
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+  <!-- HOME -->
 
-<!-- HEADER -->
+  <main id="home">
 
-<header>
+    <header>
+      <nav class="nav">
 
-<div class="moon">☾ ✦</div>
+        <div class="logo">
+          <span class="logo-star">✦</span>
+          Lingua Lumi
+        </div>
 
-<h1 class="logo">Lingua Lumi</h1>
+        <div class="header-actions">
+          <button
+            id="themeBtn"
+            class="icon-btn"
+            aria-label="Toggle dark mode"
+          >
+            ☾
+          </button>
+        </div>
 
-<div class="tagline">
-STORIES THAT TEACH · LANGUAGES THAT STAY
-</div>
+      </nav>
+    </header>
 
-<p class="subtitle">
-Little stories, new languages ✦<br>
-Read beautiful little stories and learn languages through context.
-</p>
 
-</header>
+    <!-- HERO -->
 
+    <section class="hero">
 
-<!-- HOME -->
+      <div class="hero-decoration">
+        ✿
+      </div>
 
-<div id="home">
+      <div class="hero-small">
+        STORIES THAT TEACH · LANGUAGES THAT STAY
+      </div>
 
-<div class="controls">
+      <h1>
+        Little stories,
+        <span>new languages.</span>
+        ✦
+      </h1>
 
-<input
-id="search"
-class="search"
-type="search"
-placeholder="🔎 Search stories..."
->
+      <p>
+        Read beautiful little stories and discover new languages
+        naturally through context, translation and vocabulary.
+      </p>
 
+    </section>
 
-<div class="languages">
 
-<button class="active" onclick="changeLanguage('en',this)">
-English
-</button>
+    <!-- SEARCH -->
 
-<button onclick="changeLanguage('hi',this)">
-हिन्दी
-</button>
+    <section class="search-wrap">
 
-<button onclick="changeLanguage('ja',this)">
-日本語
-</button>
+      <div class="search">
 
-<button onclick="changeLanguage('ko',this)">
-한국어
-</button>
+        <span>🔎</span>
 
-<button onclick="changeLanguage('es',this)">
-Español
-</button>
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search stories..."
+          autocomplete="off"
+        >
 
-<button onclick="changeLanguage('fr',this)">
-Français
-</button>
+      </div>
 
-<button onclick="changeLanguage('de',this)">
-Deutsch
-</button>
+    </section>
 
-<button onclick="changeLanguage('it',this)">
-Italiano
-</button>
 
-<button onclick="changeLanguage('ar',this)">
-العربية
-</button>
+    <!-- LANGUAGES -->
 
-</div>
+    <section class="language-section">
 
+      <div class="language-title">
+        Choose your language
+      </div>
 
-<div class="actions">
+      <div class="languages">
 
-<button onclick="toggleDark()">
-☾ Dark mode
-</button>
+        <button class="lang-btn active" data-lang="en">
+          English
+        </button>
 
-</div>
+        <button class="lang-btn" data-lang="hi">
+          हिन्दी
+        </button>
 
-</div>
+        <button class="lang-btn" data-lang="ja">
+          日本語
+        </button>
 
+        <button class="lang-btn" data-lang="ko">
+          한국어
+        </button>
 
-<div id="storyList"></div>
+        <button class="lang-btn" data-lang="es">
+          Español
+        </button>
 
-</div>
+        <button class="lang-btn" data-lang="fr">
+          Français
+        </button>
 
+        <button class="lang-btn" data-lang="de">
+          Deutsch
+        </button>
 
-<!-- FULL STORY READER -->
+        <button class="lang-btn" data-lang="it">
+          Italiano
+        </button>
 
-<div id="reader">
+        <button class="lang-btn" data-lang="ar">
+          العربية
+        </button>
 
-<button class="back-button" onclick="goBack()">
-← Back to stories
-</button>
+      </div>
 
-<div class="reader-box">
+    </section>
 
-<div id="readerCover" class="reader-cover">
-<div id="readerIcon" class="reader-icon"></div>
-</div>
 
+    <!-- STORIES -->
 
-<div class="reader-content">
+    <section class="stories-section">
 
-<div id="readerNumber" class="reader-number"></div>
+      <div class="section-heading">
 
-<h1 id="readerTitle" class="reader-title"></h1>
+        <div>
+          <h2>Little stories</h2>
+        </div>
 
-<div id="languageName" class="language-name"></div>
+        <p>
+          Read · Listen · Learn
+        </p>
 
+      </div>
 
-<div class="section-title">
-🌸 Original story
-</div>
+      <div
+        id="storyGrid"
+        class="story-grid"
+      ></div>
 
-<div id="originalText" class="original"></div>
+    </section>
 
+  </main>
 
-<div class="section-title">
-🇬🇧 English translation
-</div>
 
-<div id="translationText" class="translation"></div>
+  <!-- READER -->
 
+  <main
+    id="reader"
+    class="reader hidden"
+  >
 
-<div class="section-title">
-🌱 Vocabulary
-</div>
+    <button
+      id="backBtn"
+      class="back-btn"
+    >
+      ← Back to stories
+    </button>
 
-<div id="vocabulary" class="vocabulary"></div>
 
+    <!-- STORY COVER -->
 
-<button class="read-button" onclick="readStory()">
-🔊 Read aloud
-</button>
+    <div
+      id="readerCover"
+      class="reader-cover cover-rose"
+    >
 
-</div>
+      <div
+        id="readerIcon"
+        class="cover-icon"
+      >
+        ☂️
+      </div>
 
-</div>
+    </div>
 
-</div>
 
+    <!-- STORY CONTENT -->
 
-<script>
+    <article class="reader-content">
 
+      <div
+        id="readerNumber"
+        class="reader-label"
+      >
+        STORY 01
+      </div>
 
-/* LANGUAGE DATA */
+      <h1 id="readerTitle">
+        The Little Umbrella
+      </h1>
 
-const languages = {
+      <div
+        id="languageName"
+        class="reader-language"
+      >
+        🌍 English
+      </div>
 
-en: "English",
-hi: "हिन्दी",
-ja: "日本語",
-ko: "한국어",
-es: "Español",
-fr: "Français",
-de: "Deutsch",
-it: "Italiano",
-ar: "العربية"
 
-};
+      <!-- ORIGINAL STORY -->
 
+      <div
+        id="originalText"
+        class="story-text"
+      ></div>
 
-/* STORIES */
 
-const stories = [
+      <!-- TOOLS -->
 
+      <div class="reader-tools">
 
-{
+        <button
+          id="readAloud"
+          class="tool-btn"
+        >
+          🔊 Read aloud
+        </button>
 
-title: "The Little Umbrella",
+        <button
+          id="translateBtn"
+          class="tool-btn"
+        >
+          ✨ Translation
+        </button>
 
-icon: "☂️",
+      </div>
 
-cover: "cover1",
 
-texts: {
+      <!-- TRANSLATION -->
 
-en: `Mina found a small yellow umbrella near the school gate.
+      <section
+        id="translationBox"
+        class="translation hidden"
+      >
 
-It was not raining, but she carried it home anyway.
+        <h3>
+          English translation
+        </h3>
 
-The next morning, rain filled the streets. Mina smiled and opened the little umbrella.
+        <p id="translationText"></p>
 
-She realized that sometimes a small thing can be useful at exactly the right moment.`,
+      </section>
 
-hi: `मीना को स्कूल के गेट के पास एक छोटी पीली छतरी मिली।
 
-बारिश नहीं हो रही थी, फिर भी वह उसे घर ले गई।
+      <!-- VOCABULARY -->
 
-अगली सुबह बारिश से सड़कें भर गईं। मीना मुस्कुराई और छोटी छतरी खोल ली।
+      <section class="vocab">
 
-उसने समझा कि छोटी-सी चीज़ भी सही समय पर बहुत काम आ सकती है।`,
+        <h3>
+          ✦ Vocabulary
+        </h3>
 
-ja: `ミナは学校の門の近くで小さな黄色い傘を見つけました。
+        <div
+          id="vocabulary"
+          class="vocab-list"
+        ></div>
 
-雨は降っていませんでしたが、彼女はそれを家に持ち帰りました。
+      </section>
 
-次の朝、雨が街をいっぱいにしました。ミナは笑って小さな傘を開きました。
+    </article>
 
-小さなものでも、ちょうどいい時に役に立つことがあると気づきました。`,
+  </main>
 
-ko: `미나는 학교 문 근처에서 작은 노란 우산을 발견했습니다.
 
-비가 오지는 않았지만 그것을 집으로 가져갔습니다.
+  <!-- JAVASCRIPT -->
 
-다음 날 아침 비가 거리를 가득 채웠습니다. 미나는 웃으며 작은 우산을 펼쳤습니다.
+  <script src="script.js"></script>
 
-작은 것도 정확한 순간에 도움이 될 수 있다는 것을 깨달았습니다.`,
-
-es: `Mina encontró un pequeño paraguas amarillo cerca de la puerta de la escuela.
-
-No estaba lloviendo, pero decidió llevarlo a casa.
-
-A la mañana siguiente, la lluvia llenó las calles. Mina sonrió y abrió el pequeño paraguas.
-
-Comprendió que algo pequeño puede ser útil justo en el momento adecuado.`,
-
-fr: `Mina trouva un petit parapluie jaune près de la porte de l'école.
-
-Il ne pleuvait pas, mais elle le ramena chez elle.
-
-Le lendemain matin, la pluie remplit les rues. Mina sourit et ouvrit le petit parapluie.
-
-Elle comprit qu'une petite chose peut être utile au bon moment.`,
-
-de: `Mina fand einen kleinen gelben Regenschirm am Schultor.
-
-Es regnete nicht, aber sie nahm ihn mit nach Hause.
-
-Am nächsten Morgen waren die Straßen voller Regen. Mina lächelte und öffnete den kleinen Regenschirm.
-
-Sie erkannte, dass etwas Kleines genau im richtigen Moment nützlich sein kann.`,
-
-it: `Mina trovò un piccolo ombrello giallo vicino al cancello della scuola.
-
-Non pioveva, ma lo portò comunque a casa.
-
-La mattina seguente la pioggia riempì le strade. Mina sorrise e aprì il piccolo ombrello.
-
-Capì che una piccola cosa può essere utile proprio al momento giusto.`,
-
-ar: `وجدت مينا مظلة صفراء صغيرة بالقرب من بوابة المدرسة.
-
-لم تكن السماء تمطر، لكنها أخذتها إلى المنزل.
-
-في صباح اليوم التالي امتلأت الشوارع بالمطر. ابتسمت مينا وفتحت المظلة الصغيرة.
-
-أدركت أن شيئاً صغيراً يمكن أن يكون مفيداً في اللحظة المناسبة.`
-
-},
-
-vocab: [
-
-["umbrella","something used to protect from rain"],
-
-["moment","a short period of time"],
-
-["useful","helpful"]
-
-]
-
-},
-
-
-{
-
-title: "The Old Letter",
-
-icon: "✉️",
-
-cover: "cover2",
-
-texts: {
-
-en: `Leo found an old letter inside a wooden box.
-
-The paper was soft and yellow with age. He could not understand every word, but the message felt warm and kind.
-
-Leo carefully placed the letter back in the box.
-
-Some memories deserve to be protected.`,
-
-hi: `लियो को लकड़ी के एक डिब्बे में एक पुराना पत्र मिला।
-
-समय के साथ कागज़ नरम और पीला हो गया था। वह हर शब्द नहीं समझ सका, लेकिन संदेश बहुत गर्मजोशी भरा लगा।
-
-लियो ने पत्र को सावधानी से वापस डिब्बे में रख दिया।
-
-कुछ यादों को सुरक्षित रखना चाहिए।`,
-
-ja: `レオは木箱の中で古い手紙を見つけました。
-
-紙は年月によって柔らかく黄色くなっていました。すべての言葉を理解することはできませんでしたが、メッセージは温かく感じられました。
-
-レオは手紙を丁寧に箱へ戻しました。
-
-守る価値のある思い出もあります。`,
-
-ko: `레오는 나무 상자 안에서 오래된 편지를 발견했습니다.
-
-종이는 오랜 세월 때문에 부드럽고 노랗게 변해 있었습니다. 모든 단어를 이해할 수는 없었지만 메시지는 따뜻하게 느껴졌습니다.
-
-레오는 편지를 조심스럽게 상자에 다시 넣었습니다.
-
-어떤 추억은 지켜 줄 가치가 있습니다.`,
-
-es: `Leo encontró una carta antigua dentro de una caja de madera.
-
-El papel era suave y amarillo por los años. No podía entender todas las palabras, pero el mensaje se sentía cálido y amable.
-
-Leo volvió a guardar la carta con cuidado.
-
-Algunos recuerdos merecen ser protegidos.`,
-
-fr: `Leo trouva une vieille lettre dans une boîte en bois.
-
-Le papier était doux et jaune à cause des années. Il ne comprenait pas tous les mots, mais le message semblait chaleureux et gentil.
-
-Leo remit soigneusement la lettre dans la boîte.
-
-Certains souvenirs méritent d'être protégés.`,
-
-de: `Leo fand einen alten Brief in einer Holzkiste.
-
-Das Papier war durch die Jahre weich und gelb geworden. Er verstand nicht jedes Wort, aber die Nachricht fühlte sich warm und freundlich an.
-
-Leo legte den Brief vorsichtig zurück in die Schachtel.
-
-Manche Erinnerungen verdienen es, geschützt zu werden.`,
-
-it: `Leo trovò una vecchia lettera dentro una scatola di legno.
-
-La carta era diventata morbida e gialla con gli anni. Non riusciva a capire ogni parola, ma il messaggio sembrava caldo e gentile.
-
-Leo rimise con cura la lettera nella scatola.
-
-Alcuni ricordi meritano di essere protetti.`,
-
-ar: `وجد ليو رسالة قديمة داخل صندوق خشبي.
-
-كان الورق ناعماً وأصفر بسبب مرور السنين. لم يستطع فهم كل كلمة، لكن الرسالة بدت دافئة ولطيفة.
-
-أعاد ليو الرسالة بعناية إلى الصندوق.
-
-بعض الذكريات تستحق الحماية.`
-
-},
-
-vocab: [
-
-["letter","a written message"],
-
-["memory","something remembered from the past"],
-
-["protect","to keep something safe"]
-
-]
-
-},
-
-
-{
-
-title: "The Window Garden",
-
-icon: "🌿",
-
-cover: "cover3",
-
-texts: {
-
-en: `Aya placed three small pots beside her window.
-
-She planted mint, basil, and tiny flowers. Every morning she gave them water before breakfast.
-
-After several weeks, the window became bright and green.
-
-Aya discovered that caring for something every day can slowly create something beautiful.`,
-
-hi: `आया ने अपनी खिड़की के पास तीन छोटे गमले रखे।
-
-उसने पुदीना, तुलसी और छोटे फूल लगाए। हर सुबह नाश्ते से पहले वह उन्हें पानी देती थी।
-
-कई हफ्तों बाद खिड़की हरी और सुंदर हो गई।
-
-आया ने जाना कि हर दिन किसी चीज़ की देखभाल करने से धीरे-धीरे कुछ सुंदर बनाया जा सकता है।`,
-
-ja: `アヤは窓のそばに三つの小さな鉢を置きました。
-
-ミントとバジルと小さな花を植えました。毎朝、朝食の前に水をあげました。
-
-数週間後、窓辺は明るく緑になりました。
-
-毎日何かを世話することで、少しずつ美しいものを作れるとアヤは気づきました。`,
-
-ko: `아야는 창문 옆에 작은 화분 세 개를 놓았습니다.
-
-민트와 바질과 작은 꽃을 심었습니다. 매일 아침 아침 식사 전에 물을 주었습니다.
-
-몇 주 후 창가는 밝고 초록색으로 변했습니다.
-
-매일 무언가를 돌보는 것이 천천히 아름다운 것을 만들 수 있다는 것을 깨달았습니다.`,
-
-es: `Aya colocó tres pequeñas macetas junto a su ventana.
-
-Plantó menta, albahaca y pequeñas flores. Cada mañana les daba agua antes del desayuno.
-
-Después de varias semanas, la ventana se volvió verde y luminosa.
-
-Aya descubrió que cuidar algo cada día puede crear poco a poco algo hermoso.`,
-
-fr: `Aya plaça trois petits pots près de sa fenêtre.
-
-Elle planta de la menthe, du basilic et de petites fleurs. Chaque matin, elle leur donnait de l'eau avant le petit-déjeuner.
-
-Après plusieurs semaines, la fenêtre devint verte et lumineuse.
-
-Aya découvrit que prendre soin de quelque chose chaque jour peut créer lentement quelque chose de beau.`,
-
-de: `Aya stellte drei kleine Töpfe neben ihr Fenster.
-
-Sie pflanzte Minze, Basilikum und kleine Blumen. Jeden Morgen gab sie ihnen vor dem Frühstück Wasser.
-
-Nach einigen Wochen wurde das Fenster grün und hell.
-
-Aya entdeckte, dass tägliche Pflege langsam etwas Schönes entstehen lassen kann.`,
-
-it: `Aya mise tre piccoli vasi vicino alla finestra.
-
-Piantò menta, basilico e piccoli fiori. Ogni mattina li annaffiava prima di colazione.
-
-Dopo alcune settimane, la finestra diventò verde e luminosa.
-
-Aya scoprì che prendersi cura di qualcosa ogni giorno può creare lentamente qualcosa di bello.`,
-
-ar: `وضعت آيا ثلاثة أوعية صغيرة بجانب نافذتها.
-
-زرعت النعناع والريحان والزهور الصغيرة. كل صباح كانت تسقيها قبل الإفطار.
-
-بعد عدة أسابيع أصبحت النافذة خضراء ومشرقة.
-
-اكتشفت آيا أن العناية بشيء كل يوم يمكن أن تصنع شيئاً جميلاً مع مرور الوقت.`
-
-},
-
-vocab: [
-
-["window","an opening in a wall that lets in light"],
-
-["plant","a living thing that grows in soil"],
-
-["care","attention given to something"]
-
-]
-
-},
-
-
-{
-
-title: "The Quiet Library",
-
-icon: "📚",
-
-cover: "cover4",
-
-texts: {
-
-en: `Every Saturday, Aya visited the old library near her home.
-
-She loved the silence between the shelves.
-
-One day she chose a book about distant places.
-
-While reading, she imagined mountains, forests, and small villages.
-
-When she closed the book, she felt as if she had travelled without leaving her chair.`,
-
-hi: `हर शनिवार आया अपने घर के पास की पुरानी लाइब्रेरी जाती थी।
-
-उसे किताबों की अलमारियों के बीच की शांति पसंद थी।
-
-एक दिन उसने दूर की जगहों के बारे में एक किताब चुनी।
-
-पढ़ते हुए उसने पहाड़ों, जंगलों और छोटे गाँवों की कल्पना की।
-
-किताब बंद करने पर उसे लगा जैसे वह अपनी कुर्सी से उठे बिना यात्रा कर आई हो।`,
-
-ja: `毎週土曜日、アヤは家の近くの古い図書館を訪れました。
-
-本棚の間の静けさが大好きでした。
-
-ある日、遠い場所についての本を選びました。
-
-読むうちに山や森、小さな村を想像しました。
-
-本を閉じると、椅子から動かずに旅をしたような気持ちになりました。`,
-
-ko: `매주 토요일 아야는 집 근처의 오래된 도서관을 방문했습니다.
-
-그녀는 책장 사이의 고요함을 좋아했습니다.
-
-어느 날 먼 곳에 관한 책을 골랐습니다.
-
-책을 읽으며 산과 숲과 작은 마을을 상상했습니다.
-
-책을 덮었을 때 의자에서 움직이지 않고도 여행한 것 같은 기분이 들었습니다.`,
-
-es: `Cada sábado, Aya visitaba la vieja biblioteca cerca de su casa.
-
-Le encantaba el silencio entre los estantes.
-
-Un día escogió un libro sobre lugares lejanos.
-
-Mientras leía, imaginó montañas, bosques y pequeños pueblos.
-
-Cuando cerró el libro, sintió que había viajado sin levantarse de su silla.`,
-
-fr: `Chaque samedi, Aya visitait la vieille bibliothèque près de chez elle.
-
-Elle aimait le silence entre les étagères.
-
-Un jour, elle choisit un livre sur des endroits lointains.
-
-En lisant, elle imagina des montagnes, des forêts et de petits villages.
-
-Lorsqu'elle ferma le livre, elle eut l'impression d'avoir voyagé sans quitter sa chaise.`,
-
-de: `Jeden Samstag besuchte Aya die alte Bibliothek in der Nähe ihres Hauses.
-
-Sie liebte die Stille zwischen den Regalen.
-
-Eines Tages nahm sie ein Buch über ferne Orte.
-
-Beim Lesen stellte sie sich Berge, Wälder und kleine Dörfer vor.
-
-Als sie das Buch schloss, fühlte sie sich, als wäre sie gereist, ohne ihren Stuhl zu verlassen.`,
-
-it: `Ogni sabato Aya visitava la vecchia biblioteca vicino a casa.
-
-Amava il silenzio tra gli scaffali.
-
-Un giorno scelse un libro sui luoghi lontani.
-
-Mentre leggeva immaginava montagne, foreste e piccoli villaggi.
-
-Quando chiuse il libro ebbe la sensazione di aver viaggiato senza lasciare la sedia.`,
-
-ar: `كانت آيا تزور المكتبة القديمة القريبة من منزلها كل يوم سبت.
-
-كانت تحب الهدوء بين رفوف الكتب.
-
-في أحد الأيام اختارت كتاباً عن أماكن بعيدة.
-
-وبينما كانت تقرأ تخيلت الجبال والغابات والقرى الصغيرة.
-
-عندما أغلقت الكتاب شعرت وكأنها سافرت دون أن تغادر كرسيها.`
-
-},
-
-vocab: [
-
-["library","a place where books are kept"],
-
-["distant","far away"],
-
-["shelf","a flat surface for holding things"]
-
-]
-
-},
-
-
-{
-
-title: "The Paper Moon",
-
-icon: "🌙",
-
-cover: "cover5",
-
-texts: {
-
-en: `Sam made a moon from silver paper.
-
-He hung it above his desk with a thin piece of string.
-
-During the day, it looked simple.
-
-At night, the lamp made it shine softly.
-
-Sam loved looking at it while studying.
-
-It reminded him that imagination could turn something ordinary into something beautiful.`,
-
-hi: `सैम ने चाँदी जैसे कागज़ से एक चाँद बनाया।
-
-उसने उसे पतली डोरी से अपनी मेज़ के ऊपर लटका दिया।
-
-दिन में वह साधारण दिखाई देता था।
-
-रात में दीपक की रोशनी से वह हल्का चमकता था।
-
-पढ़ाई करते समय सैम उसे देखना पसंद करता था।
-
-वह उसे याद दिलाता था कि कल्पना साधारण चीज़ को सुंदर बना सकती है।`,
-
-ja: `サムは銀色の紙で月を作りました。
-
-細い糸で机の上に吊るしました。
-
-昼間はシンプルに見えました。
-
-夜になるとランプの光で柔らかく輝きました。
-
-サムは勉強しながらそれを見るのが好きでした。
-
-想像力が普通のものを美しいものに変えられることを思い出させてくれました。`,
-
-ko: `샘은 은색 종이로 달을 만들었습니다.
-
-가는 끈으로 책상 위에 매달았습니다.
-
-낮에는 단순해 보였습니다.
-
-밤에는 램프의 빛으로 부드럽게 빛났습니다.
-
-샘은 공부하면서 그것을 바라보는 것을 좋아했습니다.
-
-상상력이 평범한 것을 아름다운 것으로 바꿀 수 있다는 것을 떠올리게 했습니다.`,
-
-es: `Sam hizo una lu
+</body>
+</html>
